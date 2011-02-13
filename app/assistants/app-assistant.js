@@ -97,13 +97,14 @@ AppAssistant.prototype.updateOnTimezoneChange = function() {
 			"subscribe":false
 		},
 		onSuccess: function(payload) {
-			Mojo.Log.error("time update payload = " + Object.toJSON(payload));
+			//Mojo.Log.error("time update payload = " + Object.toJSON(payload));
 			if (this.lastTz === undefined) {
 				this.lastTz = payload.offset;
 			} else if (this.lastTz != payload.offset) {
 				this.lastTz = payload.offset;
 				alarms.updateScene();//update scene
 			} else {
+				Mojo.Log.error("resetting alarms");
 				if(!alarms.alarms){
 					alarms.load();
 				};

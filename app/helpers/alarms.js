@@ -15,6 +15,7 @@ alarms = {
 		}
 	},
 	save: function(alarm_){
+		//save all alarms
 		if(alarm_){
 			alarm = this.getAlarm(alarm_.id);
 			if(alarm){
@@ -29,18 +30,18 @@ alarms = {
 		var d = new Date();
 		var hourAhead = new Date(d.getTime() + 3600000);
 		return {
-			"id": "_"+ d.getTime() + "_",
+			"id": "_"+ d.getTime() + "_", //need it to be a string. underscores for awesomeness.
 			"name": "Alarm ",
 			"on": false,
 			"time": {
 				"hours": hourAhead.getHours(),
 				"minutes": hourAhead.getMinutes()
 			},
-			"occurs": "",
+			"occurs": "once",
 			"sound": {
 				"type": "file",
 				"name": "Alarm Clock",
-				"path": Mojo.appPath + "sounds/alarm clock.mp3"
+				"path": Mojo.appPath + "sounds/alarm clock.mp3"//default sound
 			},
 			"priority": "high"
 		};
@@ -152,46 +153,71 @@ alarms = {
 			alarmDate.setHours(alarm.time.hours);
 			alarmDate.setMinutes(alarm.time.minutes);
 			alarmDate.setSeconds(0);
+		
 		if(!keepToday){
+			var timePassed = false;
+			if(d.getTime() > alarmDate.getTime()){
+				timePassed = true;
+			}
 			switch (alarm.occurs){
-				case "":
+				case "once":
 				case "daily":
 					//calculate current time in milliseconds
-					if(alarmDate.getTime() < d.getTime()){
+					if(d.getTime() > alarmDate.getTime()){
 						alarmDate.setDate(d.getDate()+1);
 					}
 					break;
-				case "weekends":
-				
-				case "weekdays":
-				
+				case "weekends":					
+					var day = d.getDay();
+					if(day > 0 && day < 6) {//if weekday
+						//add however many days it takes to get to saturday
+						alarmDate.setDate(d.getDate() + (5-day));
+					} else if (day === 6 && timePassed === true) { //saturday
+						alarmDate.setDate(d.getDate() + 1);
+					} else if (day === 0 && timePassed === true) {//sunday
+						alarmDate.setDate(d.getDate() + 5);
+					}
+					break;
+				case "weekdays":				
+					var day = d.getDay();
+					if(day === 0) {//sunday
+						alarmDate.setDate(d.getDate() + 1);
+					} else if (day === 5 && timePassed === true) {//friday
+						alarmDate.setDate(d.getDate() + 3);
+					} else if (day === 6) {//saturday
+						alarmDate.setDate(d.getDate() + 2);
+					} else if (timePassed === true) {//weekdays
+						alarmDate.setDate(now.getDate() + 1);
+					}
+					break;
 				case "sundays":
-					
-					break;
-				
 				case "mondays":
-					
-					break;
-				
 				case "tuesdays":
-					
-					break;
-				
 				case "wednesdays":
-					
-					break;
-				
 				case "thursdays":
-					
-					break;
-				
 				case "fridays":
-					
-					break;
-				
 				case "saturdays":
-					
-					break;		
+					var daysOfWeek = {
+						"sundays": 0,
+						"mondays": 1,
+						"tuesdays": 2,
+						"wednesdays": 3,
+						"thursdays": 4,
+						"fridays": 5,
+						"saturdays": 6
+					};
+					var alarmDay = daysOfWeek[alarm.occurs];
+					var day = d.getDay();
+					if(day === alarmDay && timePassed === true){
+						alarmDate.setDate(d.getDate() + 7); //if it's today and time has passed, add a week.
+					} else if(day > alarmDay){
+						//if day is passed
+						alarmDate.setDate(d.getDate() + (7 - day + alarmDay)); 
+					} else if(day < alarmDay){
+						//if day is before
+						alarmDate.setDate(d.getDate() + (day - alarmDay)); 
+					}
+					break;
 			}
 		}
 		return alarmDate;
@@ -205,7 +231,7 @@ alarms = {
 			//return;
 		}
 		this.createAlarmDashboard(alarm);
-		if(alarm.occurs === ""){
+		if(alarm.occurs === "once"){
 			alarm.on = false;
 			this.save(alarm);
 			this.updateScene();

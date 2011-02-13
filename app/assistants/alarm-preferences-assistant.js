@@ -36,17 +36,17 @@ AlarmPreferencesAssistant.prototype.setup = function() {
 	this.controller.setupWidget('listSelector', {
 		label: $L('Occurs'), 
 		choices: [
-			{label: $L('Once'), value: ''},
+			{label: $L('Once'), value: 'once'},
 			{label: $L('Daily'), value: 'daily'},
+			{label: $L('Weekdays'), value: 'weekdays'},
 			{label: $L('Weekends'), value: 'weekends'},
-			{label: $L('Workdays'), value: 'workdays'},
 			{label: $L('Sundays'), value: 'sundays'},
 			{label: $L('Mondays'), value: 'mondays'},
 			{label: $L('Tuesdays'), value: 'tuesdays'},
 			{label: $L('Wednesdays'), value: 'wednesdays'},
 			{label: $L('Thursdays'), value: 'thursdays'},
 			{label: $L('Fridays'), value: 'fridays'},
-			{label: $L('Saturdays'), value: 'staurdays'},
+			{label: $L('Saturdays'), value: 'saturdays'}
 		]
 	}, {
 		value: this.alarm.occurs
