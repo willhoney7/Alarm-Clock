@@ -1,0 +1,140 @@
+/* TODO: put your application-specific CSS here */
+body.palm-default { /*background */
+    background: url('../images/background.png') top left repeat;
+    z-index: -1;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 320px;
+    height: 480px;
+}
+
+.clock {
+	width: 80%; 
+	background-color: white; 
+	opacity: .3; 
+	-webkit-border-radius: 3px; 
+	padding: 10px; 
+	margin: auto;
+}
+.top-text-container {
+	margin: 0px 15px 0px 15px;
+	position: relative;
+	top: 9px;
+	/*padding-bottom: 1px;*/
+}
+
+.top-text {
+	color: #ccc;
+	font-size: 16px;
+	line-height: 16px;
+}
+.top-text.left {
+	float: left;
+}
+.top-text.right {
+	float:right;
+}
+
+.time-container {
+	text-align: center;
+}
+.time {
+	font-size: 100px; 
+	/*text-align: center*/
+}
+.ampm {
+	font-size: 14px;
+	line-height: 196px;
+	position: absolute;
+	left: 36px;
+}
+
+.bottom-text {
+	text-align: center;
+	font-size: 15px;
+	color: white;
+	line-height: 15px;
+	margin: 0px 23px 5px 23px;
+	position: relative;
+	bottom: 2px;
+}
+.top-text:active,
+.top-text.selected,
+.bottom-text:active,
+.bottom-text.selected {
+	text-decoration: underline
+}
+/* Alarms list */
+.name{
+	padding: 1px 0px 0px 14px;
+}
+.info {
+	padding: 0px 14px;
+	font-size: 14px;
+}
+
+
+/*Alarm Prefrences stuff*/
+
+.palm-dark .text-edit {
+	color: white !important;
+	padding-left: 3px;
+	padding-bottom: 4px;
+	position: relative;
+	top: 1px;
+}
+.palm-dark .textfield-group.focused {
+  margin-top: 0px;
+  border-width: 15px;
+  -webkit-border-image: url(../images/group-textfield-shadow-52.png) 15 15 15 15 stretch stretch;
+}
+
+#toggleButton {
+	position: absolute;
+	right: -24px;
+	top: -1px;
+}
+
+.toggle-section .toggle-label {
+  max-width: 60%;
+  height: 52px;
+  line-height: 50px;
+  padding-left: 20px;
+  float: left;
+}
+.sliding-toggle .toggle-text {
+  position: relative;
+}
+.sliding-toggle .toggle-text span {
+  position: relative;
+  top: 0px;
+  left: 1px;
+  -webkit-transition-property: left;
+  -webkit-transition-duration: .17s;
+  -webkit-transition-timing-function: ease-in-out;
+  z-index: 0;
+}
+.sliding-toggle .toggle-button {
+  float: none;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 100%;
+  z-index: 1;
+  background-position: top right !important;
+  background-repeat: no-repeat !important;
+  -webkit-transition-property: right, margin-right;
+  -webkit-transition-duration: .17s;
+  -webkit-transition-timing-function: ease-out;
+}
+.sliding-toggle .toggle-button.true {
+  right: 0px;
+}
+.sliding-toggle .toggle-button.false + span {
+  left: 25px;
+}
+.sliding-toggle .toggle-button.false {
+  right: 100%;
+  margin-right: -23px;
+}

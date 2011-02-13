@@ -1,0 +1,11 @@
+{
+	"id": "com.tibfib.app.clock",
+	"version": "0.0.1",
+	"vendor": "Will Honey (Tibfib)",
+	"type": "web",
+	"main": "index.html",
+	"theme":"dark",
+	"title": "Alarm Clock",
+	"icon": "icon.png",
+	"noWindow": true
+}

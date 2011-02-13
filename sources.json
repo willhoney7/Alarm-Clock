@@ -1,0 +1,36 @@
+[
+    {"source": "app/models/asyncWrappers.js"},
+    {"source": "app/models/metrix.js"},
+    {"source": "app/helpers/utilities.js"},
+    {"source": "app/helpers/alarms.js"},
+    {"source": "app/assistants/app-assistant.js"},
+    {"source": "app/assistants/stage-assistant.js"},
+    {
+        "scenes": "startup",
+        "source": "app/assistants/startup-assistant.js"
+    },
+    {
+        "scenes": "clock",
+        "source": "app/assistants/clock-assistant.js"
+    },
+    {
+        "scenes": "alarms",
+        "source": "app/assistants/alarms-assistant.js"
+    },
+    {
+        "scenes": "weather",
+        "source": "app/assistants/weather-assistant.js"
+    },
+    {
+        "scenes": "about",
+        "source": "app/assistants/about-assistant.js"
+    },
+    {
+        "scenes": "alarm-preferences",
+        "source": "app/assistants/alarm-preferences-assistant.js"
+    },
+    {
+        "scenes": "dashalarm",
+        "source": "app/assistants/dashalarm-assistant.js"
+    }
+]
